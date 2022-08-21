@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/hour_weather">
+
+    <fragment
+        android:id="@+id/hour_weather"
+        android:name="com.example.weather_itw.ui.hourWeather.HourWeatherFragment"
+        android:label="@string/title_hour_weather"
+        tools:layout="@layout/fragment_hourweather" />
+
+    <fragment
+        android:id="@+id/week_weather"
+        android:name="com.example.weather_itw.ui.weekWeather.WeekWeatherFragment"
+        android:label="@string/title_week_weather"
+        tools:layout="@layout/fragment_weekweather" />
+
+    <fragment
+        android:id="@+id/sun_moon"
+        android:name="com.example.weather_itw.ui.SunMoon.SunMoonFragment"
+        android:label="@string/title_sun_moon"
+        tools:layout="@layout/fragment_sunmoon"/>
+    <fragment
+        android:id="@+id/aqi"
+        android:name="com.example.weather_itw.ui.AQI.AQIFragment"
+        android:label="@string/title_aqi"
+        tools:layout="@layout/fragment_aqi_info" />
+</navigation>

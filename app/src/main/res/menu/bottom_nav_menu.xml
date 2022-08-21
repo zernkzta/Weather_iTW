@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/hour_weather"
+        android:icon="@drawable/temp2"
+        android:title="@string/title_hour_weather" />
+
+    <item
+        android:id="@+id/week_weather"
+        android:icon="@drawable/temp2"
+        android:title="@string/title_week_weather" />
+
+    <item
+        android:id="@+id/sun_moon"
+        android:icon="@drawable/sunmoon3"
+        android:title="@string/title_sun_moon" />
+
+    <item
+        android:id="@+id/aqi"
+        android:icon="@drawable/air4"
+        android:title="@string/title_aqi" />
+</menu>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    	
+    <dimen name="activity_horizontal_margin">18.2667dp</dimen>
+    	
+    <dimen name="activity_vertical_margin">18.2667dp</dimen>
+    	
+    <dimen name="rounded_corner">9.1333dp</dimen>
+    	
+    <dimen name="small">5.7083dp</dimen>
+    	
+    <dimen name="medium">9.1333dp</dimen>
+    	
+    <dimen name="normal">17.1250dp</dimen>
+    	
+    <dimen name="large">22.8333dp</dimen>
+    	
+    <dimen name="xlarge">28.5417dp</dimen>
+    	
+    <dimen name="xxlarge">34.2500dp</dimen>
+</resources>

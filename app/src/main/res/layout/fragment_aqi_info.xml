@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="aqiData"
+            type="com.example.weather_itw.model.aqi.AQIV2" />
+        <variable
+            name="selected"
+            type="int" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="#17171C"
+        tools:context=".ui.AQI.AQIFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ProgressBar
+                        android:id="@+id/pbLoading"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtView2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:text="@string/aqi_title"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+
+                        android:gravity="center"
+                        android:text="@string/aqi_expandable_listview"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.462"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtView2" />
+
+                    <Button
+                        android:id="@+id/btnSelect"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/selector2"
+                        app:layout_constraintStart_toEndOf="@+id/txtCity"
+                        app:layout_constraintTop_toTopOf="@+id/txtCity"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <com.example.weather_itw.customview.CircleProgress
+                        android:id="@+id/circle_progress_bar1"
+                        android:layout_width="400dp"
+                        android:layout_height="220dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="20dp"
+                        app:antiAlias="true"
+                        app:arcWidth="@dimen/medium"
+                        app:bgArcColor="@android:color/darker_gray"
+                        app:bgArcWidth="@dimen/medium"
+                        app:hint="AQI"
+                        app:hintSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtCity"
+                        app:maxValue="500"
+                        app:startAngle="132"
+                        app:sweepAngle="273"
+                        app:unit="狀態"
+                        app:unitSize="18sp"
+                        app:value="@{aqiData.records.get(selected).aqi}"
+                        app:valueSize="65sp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_margin="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/background"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/circle_progress_bar1">
+
+                        <TextView
+                            android:id="@+id/pm25"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{aqiData.records.get(selected)._Pm25}"
+
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_pm25"
+                            app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/pm25"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_pm25"
+                            app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toBottomOf="@+id/pm25" />
+
+                        <com.example.weather_itw.customview.VerticalProgressBar
+                            android:id="@+id/vp_pm25"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="14dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:progress="0"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                            app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.05" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.15" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.35" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.35" />
+
+                        <TextView
+                            android:id="@+id/pm10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{aqiData.records.get(selected).pm10}"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_pm10"
+                            app:layout_constraintStart_toStartOf="@+id/guideline7"
+                            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/pm10"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_pm10"
+                            app:layout_constraintStart_toStartOf="@+id/guideline7"
+                            app:layout_constraintTop_toBottomOf="@+id/pm10" />
+
+                        <com.example.weather_itw.customview.VerticalProgressBar
+                            android:id="@+id/vp_pm10"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="14dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:progress="0"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                            app:layout_constraintStart_toStartOf="@+id/guideline7"
+                            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.65" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.65" />
+
+                        <TextView
+                            android:id="@+id/so2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{aqiData.records.get(selected).so2}"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_so2"
+                            app:layout_constraintStart_toStartOf="@+id/guideline9"
+                            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/SO2"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_so2"
+                            app:layout_constraintStart_toStartOf="@+id/guideline9"
+                            app:layout_constraintTop_toBottomOf="@+id/so2" />
+
+                        <com.example.weather_itw.customview.VerticalProgressBar
+                            android:id="@+id/vp_so2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="14dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:progress="0"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+                            app:layout_constraintStart_toStartOf="@+id/guideline9"
+                            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="1.0" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.55" />
+
+                        <TextView
+                            android:id="@+id/no2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{aqiData.records.get(selected).no2}"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_no2"
+                            app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/NO2"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_no2"
+                            app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toBottomOf="@+id/no2" />
+
+                        <TextView
+                            android:id="@+id/co"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{aqiData.records.get(selected).co}"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_co"
+                            app:layout_constraintStart_toStartOf="@+id/guideline7"
+                            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/CO"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_co"
+                            app:layout_constraintStart_toStartOf="@+id/guideline7"
+                            app:layout_constraintTop_toBottomOf="@+id/co" />
+
+                        <TextView
+                            android:id="@+id/o3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{aqiData.records.get(selected).o3}"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_o3"
+                            app:layout_constraintStart_toStartOf="@+id/guideline9"
+                            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/O3"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/vp_o3"
+                            app:layout_constraintStart_toStartOf="@+id/guideline9"
+                            app:layout_constraintTop_toBottomOf="@+id/o3" />
+
+                        <com.example.weather_itw.customview.VerticalProgressBar
+                            android:id="@+id/vp_no2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="14dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:progress="0"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                            app:layout_constraintStart_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+                        <com.example.weather_itw.customview.VerticalProgressBar
+                            android:id="@+id/vp_co"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="14dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:progress="0"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                            app:layout_constraintStart_toStartOf="@+id/guideline7"
+                            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+                        <com.example.weather_itw.customview.VerticalProgressBar
+                            android:id="@+id/vp_o3"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="14dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:progress="0"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+                            app:layout_constraintStart_toStartOf="@+id/guideline9"
+                            app:layout_constraintTop_toTopOf="@+id/guideline11" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/txt_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/time_counter"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/btnSelect"
+                        app:layout_constraintTop_toTopOf="@+id/txtCity" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
